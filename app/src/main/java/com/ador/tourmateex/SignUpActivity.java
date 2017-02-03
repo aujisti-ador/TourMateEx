@@ -69,6 +69,8 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                     try {
                         JSONObject jsonObject = new JSONObject(response);
                         Toast.makeText(getApplicationContext(), jsonObject.getString("message"), Toast.LENGTH_LONG).show();
+                        startActivity(new Intent(SignUpActivity.this,LoginActivity.class));
+
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
