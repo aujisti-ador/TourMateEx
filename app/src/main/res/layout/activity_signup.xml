@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.ador.tourmateex.MainActivity">
+    tools:context="com.ador.tourmateex.SignUpActivity">
 
     <LinearLayout
         android:layout_centerVertical="true"
@@ -60,9 +60,11 @@
         android:textAlignment="center"
         android:text="Already Registered? \n SIGN IN here...!!!"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/textView"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        android:layout_height="wrap_content"
+        android:id="@+id/signInTV"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="17dp" />
 
 </RelativeLayout>
+
