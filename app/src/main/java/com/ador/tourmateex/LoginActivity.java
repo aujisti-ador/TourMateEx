@@ -26,6 +26,7 @@ import java.util.Map;
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
 
     private EditText userNameET,passwordET;
+    private TextView signUpTV;
     private Button signBtn;
     private ProgressDialog progressDialog;
 
@@ -44,8 +45,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         userNameET = (EditText) findViewById(R.id.userNameET);
         passwordET = (EditText) findViewById(R.id.passwordET);
         signBtn = (Button) findViewById(R.id.signBtn);
+        signUpTV = (TextView) findViewById(R.id.signUpTV);
 
         signBtn.setOnClickListener(this);
+        signUpTV.setOnClickListener(this);
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Please wait...");
@@ -65,22 +68,26 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     public void onResponse(String response) {
                         progressDialog.dismiss();
 
-                        try {
-                            JSONObject obj = new JSONObject(response);
-                            if (!obj.getBoolean("error")){
-                                SharedPrefManager.getInstance(getApplicationContext())
-                                        .userLogin(
-                                                obj.getInt("id"),
-                                                obj.getString("username"),
-                                                obj.getString("email")
-                                        );
+                        if (username.isEmpty() || password.isEmpty()){
+                            Toast.makeText(LoginActivity.this, "Username and Password Required!!!", Toast.LENGTH_SHORT).show();
+                        }else {
+                            try {
+                                JSONObject obj = new JSONObject(response);
+                                if (!obj.getBoolean("error")){
+                                    SharedPrefManager.getInstance(getApplicationContext())
+                                            .userLogin(
+                                                    obj.getInt("id"),
+                                                    obj.getString("username"),
+                                                    obj.getString("email")
+                                            );
+                                    finish();
                                     startActivity(new Intent(getApplicationContext(),ProfileActivity.class));
-                                finish();
-                            }else {
-                                Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();
+                                }else {
+                                    Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
                             }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
                         }
 
                     }
@@ -110,5 +117,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View view) {
         if (view == signBtn)
             userLogin();
+        if (view == signUpTV)
+            startActivity(new Intent(getApplicationContext(),SignUpActivity.class));
+
     }
 }

@@ -45,6 +45,16 @@
             android:layout_height="wrap_content" />
 
     </LinearLayout>
+    <TextView
+        android:gravity="bottom"
+        android:textAlignment="center"
+        android:text="New user? \n SIGN UP here...!!!"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/signUpTV"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="17dp" />
 
 
 </RelativeLayout>

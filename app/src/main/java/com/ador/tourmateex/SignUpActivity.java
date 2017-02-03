@@ -94,8 +94,6 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                 return params;
             }
         };
-       /* RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);*/
 
         RequestHandler.getInstance(this).addToRequestQueue(stringRequest);
     }
