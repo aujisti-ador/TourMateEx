@@ -31,6 +31,13 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
+
+        if (SharedPrefManager.getInstance(this).isLoggedIn()){
+            finish();
+            startActivity(new Intent(getApplicationContext(),ProfileActivity.class));
+            return;
+
+        }
         userNameET= (EditText) findViewById(R.id.userNameET);
         passwordET= (EditText) findViewById(R.id.passwordET);
         emailET= (EditText) findViewById(R.id.emailET);
